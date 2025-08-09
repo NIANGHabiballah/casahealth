@@ -1,0 +1,56 @@
+<header class="casahealth-header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="logo">
+        <i class="fas fa-heartbeat"></i>
+        <span>CasaHealth</span>
+      </div>
+    </div>
+
+    <ul class="navbar-nav desktop-nav">
+      <li><a routerLink="/" routerLinkActive="active">Accueil</a></li>
+      <li><a routerLink="/recherche" routerLinkActive="active">Recherche</a></li>
+      <li><a routerLink="/structures" routerLinkActive="active">Structures</a></li>
+      <li><a routerLink="/urgences" routerLinkActive="active">Urgences</a></li>
+    </ul>
+
+    <div class="navbar-actions">
+      <div *ngIf="!currentUser" class="auth-buttons">
+        <button class="btn btn-outline" routerLink="/auth/login">
+          Connexion
+        </button>
+        <button class="btn btn-primary" routerLink="/auth/register">
+          Inscription
+        </button>
+      </div>
+
+      <div *ngIf="currentUser" class="user-menu">
+        <div class="user-avatar" (click)="toggleMenu()">
+          <i class="fas fa-user"></i>
+          <span>{{currentUser.prenom}}</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        
+        <div class="dropdown-menu" [class.active]="isMenuOpen">
+          <a (click)="navigateBasedOnRole()" class="dropdown-item">
+            <i class="fas fa-tachometer-alt"></i>
+            Tableau de bord
+          </a>
+          <a routerLink="/profil" class="dropdown-item">
+            <i class="fas fa-user-cog"></i>
+            Mon Profil
+          </a>
+          <div class="dropdown-divider"></div>
+          <a (click)="logout()" class="dropdown-item logout">
+            <i class="fas fa-sign-out-alt"></i>
+            Déconnexion
+          </a>
+        </div>
+      </div>
+
+      <button class="mobile-menu-toggle" (click)="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,101 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <div class="logo">
+        <i class="fas fa-heartbeat"></i>
+        <h2>CasaHealth</h2>
+      </div>
+      <p class="subtitle">Connectez-vous à votre compte</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <div class="form-group">
+        <label for="email" class="form-label">
+          <i class="fas fa-envelope"></i>
+          Email
+        </label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="form-control"
+          placeholder="votre@email.com"
+          [class.error]="getFieldError('email')"
+        >
+        <span class="error-message" *ngIf="getFieldError('email')">
+          {{getFieldError('email')}}
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label for="motDePasse" class="form-label">
+          <i class="fas fa-lock"></i>
+          Mot de passe
+        </label>
+        <div class="password-input-container">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            id="motDePasse"
+            formControlName="motDePasse"
+            class="form-control"
+            placeholder="••••••••"
+            [class.error]="getFieldError('motDePasse')"
+          >
+          <button
+            type="button"
+            class="password-toggle"
+            (click)="togglePasswordVisibility()"
+          >
+            <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+          </button>
+        </div>
+        <span class="error-message" *ngIf="getFieldError('motDePasse')">
+          {{getFieldError('motDePasse')}}
+        </span>
+      </div>
+
+      <div class="form-group checkbox-group">
+        <label class="checkbox-label">
+          <input
+            type="checkbox"
+            formControlName="seSouvenirDeMoi"
+            class="checkbox"
+          >
+          <span class="checkmark"></span>
+          Se souvenir de moi
+        </label>
+        <a routerLink="/auth/forgot-password" class="forgot-link">
+          Mot de passe oublié ?
+        </a>
+      </div>
+
+      <button
+        type="submit"
+        class="btn-submit"
+        [disabled]="!loginForm.valid || isLoading"
+      >
+        <span *ngIf="!isLoading">Se connecter</span>
+        <span *ngIf="isLoading">
+          <i class="fas fa-spinner fa-spin"></i>
+          Connexion...
+        </span>
+      </button>
+
+      <div class="divider">
+        <span>ou</span>
+      </div>
+
+      <div class="social-login">
+        <button type="button" class="btn-social google">
+          <i class="fab fa-google"></i>
+          Continuer avec Google
+        </button>
+      </div>
+
+      <p class="signup-link">
+        Pas encore de compte ?
+        <a routerLink="/auth/register">Créer un compte</a>
+      </p>
+    </form>
+  </div>
+</div>

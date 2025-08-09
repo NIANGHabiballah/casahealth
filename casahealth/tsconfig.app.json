@@ -10,7 +10,7 @@
   },
   "include": [
     "src/**/*.ts"
-  ],
+, "src/app/core/models/structure-medicale", "src/app/core/models/tournee-medicale", "src/app/core/models/user.model", "src/app/core/models/rendez-vous", "src/app/core/models/patient", "src/app/core/models/paiement", "src/app/core/models/medecin.ts", "src/app/core/models/avis.ts", "src/app/core/services/api", "src/app/core/services/auth", "src/app/core/services/geolocation.service.ts", "src/app/core/services/notification.service.ts", "src/app/core/services/rdv.sersrc/app/core/services/user.service.tsrvices/user", "src/app/core/guards/auth.guard.ts", "src/app/core/guards/role.guard.ts"  ],
   "exclude": [
     "src/**/*.spec.ts"
   ]

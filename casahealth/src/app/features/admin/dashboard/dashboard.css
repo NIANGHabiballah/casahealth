@@ -1,0 +1,9 @@
+/* Style minimal pour le dashboard admin et medecin */
+.dashboard-page {
+  padding: 2rem;
+  text-align: center;
+}
+.dashboard-page h2 {
+  color: #1976d2;
+  font-size: 2rem;
+}

@@ -1,0 +1,184 @@
+<div class="patient-dashboard">
+  <!-- Header de bienvenue -->
+  <div class="welcome-header">
+    <div class="welcome-content">
+      <h1>Bonjour {{patient?.prenom}} !</h1>
+      <p>Bienvenue sur votre tableau de bord CasaHealth</p>
+    </div>
+    <div class="weather-widget">
+      <i class="fas fa-sun"></i>
+      <span>28°C - Ensoleillé</span>
+    </div>
+  </div>
+
+  <!-- Actions rapides -->
+  <div class="quick-actions">
+    <h2>Actions rapides</h2>
+    <div class="actions-grid">
+      <a 
+        *ngFor="let action of quickActions" 
+        [routerLink]="action.route"
+        class="action-card"
+        [ngClass]="'action-' + action.color"
+      >
+        <div class="action-icon">
+          <i [class]="action.icon"></i>
+        </div>
+        <div class="action-content">
+          <h3>{{action.title}}</h3>
+          <p>{{action.description}}</p>
+        </div>
+        <i class="fas fa-arrow-right action-arrow"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Contenu principal -->
+  <div class="dashboard-content">
+    <!-- Colonne gauche -->
+    <div class="left-column">
+      <!-- Prochain RDV -->
+      <div class="card next-appointment" *ngIf="prochainRdv">
+        <div class="card-header">
+          <h3><i class="fas fa-calendar-check"></i> Prochain rendez-vous</h3>
+        </div>
+        <div class="card-body">
+          <div class="appointment-info">
+            <div class="appointment-date">
+              <span class="day">{{formatDate(prochainRdv.dateHeure).split(' ')[0]}}</span>
+              <span class="date">{{formatDate(prochainRdv.dateHeure)}}</span>
+            </div>
+            <div class="appointment-details">
+              <h4>Dr. Aminata Sall</h4>
+              <p><i class="fas fa-stethoscope"></i> Gynécologue</p>
+              <p><i class="fas fa-map-marker-alt"></i> Hôpital de Ziguinchor</p>
+              <span class="badge badge-success">{{prochainRdv.statut}}</span>
+            </div>
+          </div>
+          <div class="appointment-actions">
+            <button class="btn btn-outline">Modifier</button>
+            <button class="btn btn-primary">Voir détails</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Historique des RDV -->
+      <div class="card appointment-history">
+        <div class="card-header">
+          <h3><i class="fas fa-history"></i> Rendez-vous récents</h3>
+          <a routerLink="/patient/rdv/historique" class="view-all">Voir tout</a>
+        </div>
+        <div class="card-body">
+          <div class="appointment-list">
+            <div 
+              *ngFor="let rdv of rdvRecents" 
+              class="appointment-item"
+            >
+              <div class="appointment-date-small">
+                {{formatDate(rdv.dateHeure)}}
+              </div>
+              <div class="appointment-info-small">
+                <h4>Dr. {{rdv.medecinId}}</h4>
+                <p>{{rdv.motifConsultation || 'Consultation générale'}}</p>
+              </div>
+              <span 
+                class="badge"
+                [ngClass]="getStatusBadgeClass(rdv.statut)"
+              >
+                {{rdv.statut}}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Colonne droite -->
+    <div class="right-column">
+      <!-- Structures proches -->
+      <div class="card nearby-structures">
+        <div class="card-header">
+          <h3><i class="fas fa-map-marked-alt"></i> Structures proches</h3>
+          <button 
+            class="btn btn-sm btn-outline"
+            (click)="loadNearbyStructures()"
+            [disabled]="isLoadingLocation"
+          >
+            <i class="fas fa-sync" [class.fa-spin]="isLoadingLocation"></i>
+            Actualiser
+          </button>
+        </div>
+        <div class="card-body">
+          <div class="structures-list" *ngIf="!isLoadingLocation">
+            <div 
+              *ngFor="let structure of structuresProches" 
+              class="structure-item"
+            >
+              <div class="structure-icon">
+                <i 
+                  class="fas"
+                  [ngClass]="{
+                    'fa-hospital': structure.typeStructure === 'HOPITAL',
+                    'fa-clinic-medical': structure.typeStructure === 'CLINIQUE',
+                    'fa-user-md': structure.typeStructure === 'CABINET'
+                  }"
+                ></i>
+              </div>
+              <div class="structure-info">
+                <h4>{{structure.nom}}</h4>
+                <p><i class="fas fa-map-marker-alt"></i> {{structure.adresse}}</p>
+                <div class="structure-services">
+                  <span 
+                    *ngFor="let service of structure.services?.slice(0, 2)" 
+                    class="service-tag"
+                  >
+                    {{service}}
+                  </span>
+                </div>
+              </div>
+              <div class="structure-actions">
+                <button class="btn btn-sm btn-outline">
+                  <i class="fas fa-directions"></i>
+                </button>
+                <button class="btn btn-sm btn-primary">
+                  <i class="fas fa-calendar-plus"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="loading-spinner" *ngIf="isLoadingLocation">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Localisation en cours...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conseils santé -->
+      <div class="card health-tips">
+        <div class="card-header">
+          <h3><i class="fas fa-lightbulb"></i> Conseils du jour</h3>
+        </div>
+        <div class="card-body">
+          <div class="tip-item">
+            <div class="tip-icon">
+              <i class="fas fa-tint"></i>
+            </div>
+            <div class="tip-content">
+              <h4>Hydratation</h4>
+              <p>Buvez au moins 2 litres d'eau par jour, surtout en saison sèche.</p>
+            </div>
+          </div>
+          <div class="tip-item">
+            <div class="tip-icon">
+              <i class="fas fa-shield-virus"></i>
+            </div>
+            <div class="tip-content">
+              <h4>Vaccination</h4>
+              <p>N'oubliez pas votre rappel de vaccination annuel.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
