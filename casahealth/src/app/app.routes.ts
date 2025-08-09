@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
 import { Login } from './features/auth/login/login';
 import { Register } from './features/auth/register/register';
-import { DashboardStructureSanitaire } from './features/structure-medicale/dashboard-structure';
 // Ajoutez ici les imports pour les autres dashboards et pages
 // Exemple :
 import { MedecinDashboard } from './features/medecin/dashboard/dashboard';
 import { AdminDashboard } from './features/admin/dashboard/dashboard';
 import { Profil } from './features/patient/profil/profil';
+import { DashboardStructureSanitaire } from './features/structure-medicale/dashboard-structure';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },

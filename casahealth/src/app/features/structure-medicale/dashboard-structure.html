@@ -1,126 +1,234 @@
-<div class="structure-dashboard">
-  <!-- Header de bienvenue -->
-  <div class="welcome-header">
-    <div class="welcome-content">
-      <h1>Bienvenue dans le dashboard des structures sanitaires !</h1>
-      <p>Suivi et gestion des établissements médicaux de la plateforme CasaHealth</p>
+<!-- Dashboard Container -->
+<div class="dashboard-container">
+  
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <img src="logoHealthKasa.png" alt="HealthKasa" class="logo">
     </div>
-    <div class="weather-widget">
-      <i class="fas fa-sun"></i>
-      <span>28°C - Ensoleillé</span>
+    
+    <nav class="sidebar-nav">
+      <div class="nav-item active" (click)="navigateTo('dashboard')">
+        <i class="icon-grid"></i>
+        <span>Dashboard</span>
+      </div>
+      
+      <div class="nav-item" (click)="navigateTo('docteur')">
+        <i class="icon-user"></i>
+        <span>Docteur</span>
+      </div>
+      
+      <div class="nav-item" (click)="navigateTo('patients')">
+        <i class="icon-users"></i>
+        <span>Patients</span>
+      </div>
+      
+      <div class="nav-item" (click)="navigateTo('rendez-vous')">
+        <i class="icon-calendar"></i>
+        <span>Rendez-vous</span>
+      </div>
+      
+      <div class="nav-item" (click)="navigateTo('payment')">
+        <i class="icon-payment"></i>
+        <span>Payment</span>
+      </div>
+      
+      <div class="nav-item" (click)="navigateTo('parametre')">
+        <i class="icon-settings"></i>
+        <span>Paramètre</span>
+      </div>
+    </nav>
+    
+    <div class="sidebar-footer">
+      <div class="nav-item" (click)="logout()">
+        <i class="icon-logout"></i>
+        <span>Log Out</span>
+      </div>
+      
+      <div class="nav-item delete" (click)="deleteProfile()">
+        <i class="icon-trash"></i>
+        <span>Delete Profile</span>
+      </div>
     </div>
-  </div>
+  </aside>
 
-  <!-- Actions rapides -->
-  <div class="quick-actions">
-    <h2>Actions rapides</h2>
-    <div class="actions-grid">
-      <a class="action-card action-primary" routerLink="/structure-medicale/ajouter">
-        <div class="action-icon"><i class="fas fa-plus-square"></i></div>
-        <div class="action-content">
-          <h3>Ajouter une structure</h3>
-          <p>Créer un nouvel établissement</p>
+  <!-- Main Content -->
+  <main class="main-content">
+    
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left" style="display: flex; align-items: center; gap: 12px;">
+        <img src="logoHealthKasa.png" alt="HealthKasa" class="logo-header">
+        <h1 style="margin: 0; font-size: 24px; font-weight: 600; color: #1f2937;">Dashboard_clinique</h1>
+      </div>
+      
+      <div class="header-center">
+        <div class="search-bar">
+          <input type="text" placeholder="Rechercher..." (input)="onSearch($event)">
+          <i class="icon-search"></i>
         </div>
-        <i class="fas fa-arrow-right action-arrow"></i>
-      </a>
-      <a class="action-card action-info" routerLink="/structure-medicale/liste">
-        <div class="action-icon"><i class="fas fa-hospital"></i></div>
-        <div class="action-content">
-          <h3>Liste des structures</h3>
-          <p>Voir tous les établissements</p>
+      </div>
+      
+      <div class="header-right">
+        <button class="notification-btn" (click)="onNotificationClick()">
+          <i class="icon-phone"></i>
+        </button>
+        
+        <button class="notification-btn" (click)="onNotificationClick()">
+          <i class="icon-bell"></i>
+          <span class="notification-badge">1</span>
+        </button>
+        
+        <div class="profile-section" (click)="onProfileClick()">
+          <img src="assets/profile-avatar.png" alt="Profile" class="profile-avatar">
+          <span class="clinic-name">{{ selectedClinic }}</span>
         </div>
-        <i class="fas fa-arrow-right action-arrow"></i>
-      </a>
-      <a class="action-card action-success" routerLink="/structure-medicale/statistiques">
-        <div class="action-icon"><i class="fas fa-chart-bar"></i></div>
-        <div class="action-content">
-          <h3>Statistiques</h3>
-          <p>Consulter les indicateurs clés</p>
-        </div>
-        <i class="fas fa-arrow-right action-arrow"></i>
-      </a>
-    </div>
-  </div>
+      </div>
+    </header>
 
-  <!-- Contenu principal -->
-  <div class="dashboard-content">
-    <div class="left-column">
-      <div class="card">
-        <div class="card-header">
-          <h3><i class="fas fa-hospital"></i> Structures récentes</h3>
-          <a routerLink="/structure-medicale/liste" class="view-all">Voir tout</a>
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+      <div class="hero-content">
+        <img src="assets/hospital-building.png" alt="Hospital" class="hero-image">
+        <div class="hero-text">
+          <h2>SOIGNER LOIN, SANS FRONTIÈRES :</h2>
+          <h3>LE DÉSENCLAVEMENT SANITAIRE</h3>
+          <h3>POUR TOUS !</h3>
         </div>
-        <div class="card-body">
-          <div class="structure-list">
-            <!-- Exemple de structure, à remplacer par *ngFor -->
-            <div class="structure-item">
-              <div class="structure-name">Hôpital de Ziguinchor</div>
-              <div class="structure-type">Hôpital régional</div>
-              <span class="badge badge-success">Actif</span>
+      </div>
+      <div class="hero-particles"></div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+      
+      <!-- Main Stats Cards -->
+      <div class="stats-cards">
+        <div class="stat-card" *ngFor="let stat of statCards">
+          <div class="stat-header">
+            <div class="stat-icon" [ngClass]="stat.color">
+              <i [class]="'icon-' + stat.icon"></i>
             </div>
-            <div class="structure-item">
-              <div class="structure-name">Clinique Casamed</div>
-              <div class="structure-type">Clinique privée</div>
-              <span class="badge badge-primary">Actif</span>
+            <div class="stat-trend">
+              <span class="trend-arrow">↗</span>
+              <span class="trend-value">{{ stat.trend }}</span>
             </div>
-            <div class="structure-item">
-              <div class="structure-name">Centre de santé de Bignona</div>
-              <div class="structure-type">Centre de santé</div>
-              <span class="badge badge-secondary">Actif</span>
-            </div>
+          </div>
+          <div class="stat-content">
+            <h3>{{ stat.title }}</h3>
+            <p class="stat-value">{{ stat.value }}</p>
           </div>
         </div>
       </div>
-    </div>
-    <div class="right-column">
-      <div class="card">
-        <div class="card-header">
-          <h3><i class="fas fa-chart-pie"></i> Statistiques clés</h3>
-        </div>
-        <div class="card-body">
-          <div class="stats-grid">
-            <div class="stat-card">
-              <div class="stat-header">
-                <div>
-                  <div class="stat-value">24</div>
-                  <div class="stat-label">Structures actives</div>
-                </div>
-                <div class="stat-icon"><i class="fas fa-hospital"></i></div>
-              </div>
-              <div class="stat-trend trend-up">
-                <i class="fas fa-arrow-up"></i>
-                <span>+3 ce mois</span>
-              </div>
+
+      <!-- Report Chart -->
+      <div class="chart-container">
+        <div class="chart-header">
+          <h3>Report</h3>
+          <div class="chart-legend">
+            <div class="legend-item">
+              <span class="legend-color green"></span>
+              <span>rendez-vous</span>
             </div>
-            <div class="stat-card">
-              <div class="stat-header">
-                <div>
-                  <div class="stat-value">7</div>
-                  <div class="stat-label">Nouvelles demandes</div>
-                </div>
-                <div class="stat-icon"><i class="fas fa-envelope-open-text"></i></div>
-              </div>
-              <div class="stat-trend trend-up">
-                <i class="fas fa-arrow-up"></i>
-                <span>+2 ce mois</span>
-              </div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-header">
-                <div>
-                  <div class="stat-value">5</div>
-                  <div class="stat-label">Structures en attente</div>
-                </div>
-                <div class="stat-icon"><i class="fas fa-clock"></i></div>
-              </div>
-              <div class="stat-trend trend-warning">
-                <i class="fas fa-arrow-right"></i>
-                <span>Stable</span>
-              </div>
+            <div class="legend-item">
+              <span class="legend-color brown"></span>
+              <span>Patients</span>
             </div>
           </div>
         </div>
+        <div class="line-chart">
+          <div class="chart-area">
+            <svg viewBox="0 0 300 120" class="chart-svg">
+              <!-- Lignes de rendez-vous -->
+              <polyline 
+                points="20,80 60,70 100,85 140,50 180,75 220,90 260,95"
+                class="chart-line green-line">
+              </polyline>
+              <!-- Ligne de patients -->
+              <polyline 
+                points="20,90 60,85 100,95 140,65 180,85 220,100 260,105"
+                class="chart-line brown-line">
+              </polyline>
+            </svg>
+          </div>
+          <div class="chart-labels">
+            <span *ngFor="let day of weeklyData">{{ day.day }}</span>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+
+      <!-- Consultation Types -->
+      <div class="consultation-card">
+        <h3>Consultation</h3>
+        <div class="consultation-types">
+          <div class="consultation-item">
+            <div class="consultation-indicator blue">{{ consultationData.telecons.count }}</div>
+            <span>Télé-cons</span>
+          </div>
+          <div class="consultation-item">
+            <div class="consultation-indicator red">{{ consultationData.local.count }}</div>
+            <span>Local</span>
+          </div>
+        </div>
+        <div class="consultation-chart">
+          <!-- Graphiques en aires colorées -->
+          <div class="area-chart blue-area"></div>
+          <div class="area-chart red-area"></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Hospital Overview -->
+    <section class="hospital-section">
+      <h2>Aperçu de l'hôpital</h2>
+      <div class="hospital-cards">
+        <div class="hospital-card" *ngFor="let item of hospitalOverview">
+          <div class="hospital-icon">
+            <i [class]="'icon-' + item.icon"></i>
+          </div>
+          <div class="hospital-info">
+            <p class="hospital-value">{{ item.value }}</p>
+            <p class="hospital-title">{{ item.title }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gender Chart -->
+    <section class="gender-section">
+      <div class="gender-chart">
+        <h3>Gender</h3>
+        <div class="donut-chart">
+          <div class="donut-center">
+            <span class="percentage">100%</span>
+          </div>
+          <svg viewBox="0 0 120 120" class="donut-svg">
+            <circle cx="60" cy="60" r="45" class="donut-segment orange" 
+                    stroke-dasharray="65 200" stroke-dashoffset="0"></circle>
+            <circle cx="60" cy="60" r="45" class="donut-segment teal" 
+                    stroke-dasharray="45 200" stroke-dashoffset="-65"></circle>
+            <circle cx="60" cy="60" r="45" class="donut-segment purple" 
+                    stroke-dasharray="35 200" stroke-dashoffset="-110"></circle>
+          </svg>
+        </div>
+        <div class="gender-legend">
+          <div class="legend-item">
+            <span class="legend-dot orange"></span>
+            <span>Femme 45%</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot teal"></span>
+            <span>Homme 30%</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot purple"></span>
+            <span>Enfant 25%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  
 </div>
