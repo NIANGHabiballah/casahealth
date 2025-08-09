@@ -1,1 +1,89 @@
-<p>register works!</p>
+<div class="register-container">
+  <div class="register-card">
+    <div class="register-header">
+      <div class="logo">
+        <i class="fas fa-heartbeat"></i>
+        <h2>CasaHealth</h2>
+      </div>
+      <p class="subtitle">Créez votre compte</p>
+    </div>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+      <div *ngIf="apiError" class="api-error-message">
+        <i class="fas fa-exclamation-triangle"></i> {{apiError}}
+      </div>
+      <div class="form-group">
+        <label for="prenom" class="form-label">
+          <i class="fas fa-user"></i>
+          Prénom
+        </label>
+        <input type="text" id="prenom" formControlName="prenom" class="form-control" placeholder="Votre prénom" [class.error]="getFieldError('prenom')">
+        <span class="error-message" *ngIf="getFieldError('prenom')">{{getFieldError('prenom')}}</span>
+      </div>
+      <div class="form-group">
+        <label for="nom" class="form-label">
+          <i class="fas fa-user"></i>
+          Nom
+        </label>
+        <input type="text" id="nom" formControlName="nom" class="form-control" placeholder="Votre nom" [class.error]="getFieldError('nom')">
+        <span class="error-message" *ngIf="getFieldError('nom')">{{getFieldError('nom')}}</span>
+      </div>
+      <div class="form-group">
+        <label for="email" class="form-label">
+          <i class="fas fa-envelope"></i>
+          Email
+        </label>
+        <input type="email" id="email" formControlName="email" class="form-control" placeholder="votre@email.com" [class.error]="getFieldError('email')">
+        <span class="error-message" *ngIf="getFieldError('email')">{{getFieldError('email')}}</span>
+      </div>
+      <div class="form-group">
+        <label for="telephone" class="form-label">
+          <i class="fas fa-phone"></i>
+          Téléphone
+        </label>
+        <input type="tel" id="telephone" formControlName="telephone" class="form-control" placeholder="Votre numéro" [class.error]="getFieldError('telephone')">
+        <span class="error-message" *ngIf="getFieldError('telephone')">{{getFieldError('telephone')}}</span>
+      </div>
+      <div class="form-group">
+        <label for="motDePasse" class="form-label">
+          <i class="fas fa-lock"></i>
+          Mot de passe
+        </label>
+        <div class="password-input-container">
+          <input [type]="showPassword ? 'text' : 'password'" id="motDePasse" formControlName="motDePasse" class="form-control" placeholder="••••••••" [class.error]="getFieldError('motDePasse')">
+          <button type="button" class="password-toggle" (click)="togglePasswordVisibility()">
+            <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+          </button>
+        </div>
+        <span class="error-message" *ngIf="getFieldError('motDePasse')">{{getFieldError('motDePasse')}}</span>
+      </div>
+      <div class="form-group">
+        <label for="confirmMotDePasse" class="form-label">
+          <i class="fas fa-lock"></i>
+          Confirmer le mot de passe
+        </label>
+        <input [type]="showPassword ? 'text' : 'password'" id="confirmMotDePasse" formControlName="confirmMotDePasse" class="form-control" placeholder="••••••••" [class.error]="getFieldError('confirmMotDePasse')">
+        <span class="error-message" *ngIf="getFieldError('confirmMotDePasse')">{{getFieldError('confirmMotDePasse')}}</span>
+      </div>
+      <div class="form-group">
+        <label for="role" class="form-label">
+          <i class="fas fa-user-tag"></i>
+          Rôle
+        </label>
+        <select id="role" formControlName="role" class="form-control">
+          <option value="PATIENT">Patient</option>
+          <option value="MEDECIN">Médecin</option>
+          <option value="ADMIN">Admin</option>
+        </select>
+        <span class="error-message" *ngIf="getFieldError('role')">{{getFieldError('role')}}</span>
+      </div>
+      <button type="submit" class="btn-submit" [disabled]="!registerForm.valid || isLoading">
+        <span *ngIf="!isLoading">S'inscrire</span>
+        <span *ngIf="isLoading"><i class="fas fa-spinner fa-spin"></i> Inscription...</span>
+      </button>
+      <div class="login-link">
+        <span>Déjà un compte ?</span>
+        <a routerLink="/auth/login">Connectez-vous</a>
+      </div>
+    </form>
+  </div>
+</div>

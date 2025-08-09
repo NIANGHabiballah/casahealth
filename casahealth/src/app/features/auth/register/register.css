@@ -1,0 +1,134 @@
+/* Style moderne et professionnel pour le formulaire d'inscription */
+.register-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #3B7034 0%, #2192AF 50%, #AEB7A0 100%);
+  padding: 2rem;
+}
+.register-card {
+  background: #FEFEFE;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(59, 112, 52, 0.2);
+  width: 100%;
+  max-width: 480px;
+  overflow: hidden;
+}
+.register-header {
+  background: linear-gradient(135deg, #3B7034, #2192AF);
+  color: #FEFEFE;
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.logo i {
+  font-size: 2.5rem;
+  color: #AEB7A0;
+}
+.logo h2 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+.subtitle {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 1.1rem;
+}
+.register-form {
+  padding: 2.5rem 2rem;
+}
+.form-group {
+  margin-bottom: 1.5rem;
+}
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #3B7034;
+  margin-bottom: 0.5rem;
+}
+.form-control {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #AEB7A0;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #FEFEFE;
+}
+.form-control:focus {
+  outline: none;
+  border-color: #2192AF;
+  box-shadow: 0 0 0 3px rgba(33, 146, 175, 0.1);
+}
+.form-control.error {
+  border-color: #d32f2f;
+}
+.error-message {
+  color: #d32f2f;
+  font-size: 0.95rem;
+  margin-top: 0.3rem;
+  display: block;
+}
+.password-input-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.password-toggle {
+  background: none;
+  border: none;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #2192AF;
+  font-size: 1.2rem;
+}
+.btn-submit {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(90deg, #3B7034, #2192AF);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(33, 146, 175, 0.08);
+}
+.btn-submit:disabled {
+  background: #AEB7A0;
+  cursor: not-allowed;
+}
+.login-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+}
+.login-link a {
+  color: #2192AF;
+  text-decoration: underline;
+  margin-left: 0.5rem;
+}
+@media (max-width: 600px) {
+  .register-card {
+    max-width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .register-form {
+    padding: 1.2rem 0.5rem;
+  }
+}
