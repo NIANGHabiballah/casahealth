@@ -1,1 +1,263 @@
-<p>dashboard works!</p>
+ <div class="dashboard-container">
+        <!-- En-tête du dashboard -->
+        <div class="dashboard-header">
+            <h1>
+                <div class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                Casa Health - Administration
+            </h1>
+            <p>Tableau de bord de gestion de la plateforme médicale de Casamance</p>
+        </div>
+
+        <!-- Statistiques principales -->
+        <div class="stats-grid">
+            <div class="stat-card patients">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-value">1,247</div>
+                        <div class="stat-label">Patients actifs</div>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+                <div class="stat-trend trend-up">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>+18% ce mois</span>
+                </div>
+            </div>
+
+            <div class="stat-card doctors">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-value">89</div>
+                        <div class="stat-label">Professionnels de santé</div>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                </div>
+                <div class="stat-trend trend-up">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>+12% ce mois</span>
+                </div>
+            </div>
+
+            <div class="stat-card appointments">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-value">432</div>
+                        <div class="stat-label">RDV ce mois</div>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                </div>
+                <div class="stat-trend trend-up">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>+25% vs mois dernier</span>
+                </div>
+            </div>
+
+            <div class="stat-card structures">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-value">34</div>
+                        <div class="stat-label">Structures médicales</div>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                </div>
+                <div class="stat-trend trend-up">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>+3 nouvelles</span>
+                </div>
+            </div>
+
+            <div class="stat-card revenue">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-value">2.1M</div>
+                        <div class="stat-label">Revenus (FCFA)</div>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+                <div class="stat-trend trend-up">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>+15% ce trimestre</span>
+                </div>
+            </div>
+
+            <div class="stat-card satisfaction">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-value">4.7/5</div>
+                        <div class="stat-label">Satisfaction moyenne</div>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="stat-trend trend-up">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>Excellent</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistiques par région de Casamance -->
+        <div class="region-stats">
+            <h3><i class="fas fa-map-marked-alt"></i> Couverture par région</h3>
+            <div class="region-grid">
+                <div class="region-item">
+                    <strong>Ziguinchor</strong>
+                    <div>12 structures</div>
+                    <div>456 patients</div>
+                </div>
+                <div class="region-item">
+                    <strong>Bignona</strong>
+                    <div>8 structures</div>
+                    <div>234 patients</div>
+                </div>
+                <div class="region-item">
+                    <strong>Oussouye</strong>
+                    <div>6 structures</div>
+                    <div>189 patients</div>
+                </div>
+                <div class="region-item">
+                    <strong>Sédhiou</strong>
+                    <div>5 structures</div>
+                    <div>156 patients</div>
+                </div>
+                <div class="region-item">
+                    <strong>Kolda</strong>
+                    <div>3 structures</div>
+                    <div>112 patients</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Graphiques et activité récente -->
+        <div class="dashboard-grid">
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3><i class="fas fa-chart-area"></i> Évolution des rendez-vous</h3>
+                    <p>Consultations et rendez-vous sur les 6 derniers mois</p>
+                </div>
+                <canvas id="appointmentChart"></canvas>
+            </div>
+
+            <div class="recent-activity">
+                <h3><i class="fas fa-clock"></i> Activité récente</h3>
+                <div class="activity-item">
+                    <div class="activity-icon" style="background: #4caf50;">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">Nouveau médecin inscrit</div>
+                        <div class="activity-time">Dr. Fatou Sall - Gynécologue</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon" style="background: #2196f3;">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">Nouvelle structure</div>
+                        <div class="activity-time">Clinique Sainte Marie - Ziguinchor</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon" style="background: #ff9800;">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">Pic de réservations</div>
+                        <div class="activity-time">67 RDV aujourd'hui</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon" style="background: #e91e63;">
+                        <i class="fas fa-baby"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">Module Maman-Bébé</div>
+                        <div class="activity-time">23 rappels vaccins envoyés</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon" style="background: #9c27b0;">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">Téléconsultation</div>
+                        <div class="activity-time">8 consultations virtuelles</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alertes et notifications importantes -->
+        <div class="alert-panel">
+            <h3><i class="fas fa-exclamation-triangle"></i> Alertes importantes</h3>
+            <div class="alert-item">
+                <i class="fas fa-syringe" style="color: #ff9800;"></i>
+                <span>Campagne de vaccination à Oussouye - 3 jours restants</span>
+            </div>
+            <div class="alert-item">
+                <i class="fas fa-heartbeat" style="color: #f44336;"></i>
+                <span>Tournée cardiologique prévue à Bignona le 15 août</span>
+            </div>
+            <div class="alert-item">
+                <i class="fas fa-chart-line" style="color: #4caf50;"></i>
+                <span>Objectif mensuel atteint : +500 nouveaux utilisateurs</span>
+            </div>
+        </div>
+
+        <!-- Boutons d'actions rapides -->
+        <div class="action-buttons">
+            <button class="btn btn-primary">
+                <i class="fas fa-user-plus"></i>
+                Ajouter un professionnel
+            </button>
+            <button class="btn btn-success">
+                <i class="fas fa-hospital"></i>
+                Nouvelle structure
+            </button>
+            <button class="btn btn-info">
+                <i class="fas fa-file-export"></i>
+                Exporter données
+            </button>
+            <button class="btn btn-warning">
+                <i class="fas fa-bell"></i>
+                Envoyer notification
+            </button>
+        </div>
+
+        <!-- Statistiques spécialisées Casa Health -->
+        <div class="quick-stats">
+            <div class="quick-stat">
+                <h4><i class="fas fa-baby"></i> Module Maman-Bébé</h4>
+                <p><strong>156</strong> mamans suivies</p>
+                <p><strong>89</strong> bébés vaccinés</p>
+            </div>
+            <div class="quick-stat">
+                <h4><i class="fas fa-route"></i> Tournées médicales</h4>
+                <p><strong>12</strong> tournées actives</p>
+                <p><strong>234</strong> consultations itinérantes</p>
+            </div>
+            <div class="quick-stat">
+                <h4><i class="fas fa-language"></i> Langues locales</h4>
+                <p><strong>67%</strong> en français</p>
+                <p><strong>33%</strong> en diola</p>
+            </div>
+            <div class="quick-stat">
+                <h4><i class="fas fa-mobile-alt"></i> Paiements mobile</h4>
+                <p><strong>Wave</strong>: 45%</p>
+                <p><strong>Orange Money</strong>: 35%</p>
+            </div>
+        </div>

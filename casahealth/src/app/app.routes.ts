@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { Login } from './features/auth/login/login';
 import { Register } from './features/auth/register/register';
-import { Dashboard } from './features/patient/dashboard/dashboard';
+import { DashboardStructureSanitaire } from './features/structure-medicale/dashboard-structure';
 // Ajoutez ici les imports pour les autres dashboards et pages
 // Exemple :
 import { MedecinDashboard } from './features/medecin/dashboard/dashboard';
@@ -12,7 +12,7 @@ export const routes: Routes = [
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
   { path: 'auth/login', component: Login },
   { path: 'auth/register', component: Register },
-  { path: 'patient/dashboard', component: Dashboard },
+  { path: 'structure-medicale/dashboard', component: DashboardStructureSanitaire },
   // Ajoutez ici les routes pour les autres dashboards et pages
   // Exemple :
   { path: 'medecin/dashboard', component: MedecinDashboard },

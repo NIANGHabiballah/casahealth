@@ -1,0 +1,126 @@
+<div class="structure-dashboard">
+  <!-- Header de bienvenue -->
+  <div class="welcome-header">
+    <div class="welcome-content">
+      <h1>Bienvenue dans le dashboard des structures sanitaires !</h1>
+      <p>Suivi et gestion des établissements médicaux de la plateforme CasaHealth</p>
+    </div>
+    <div class="weather-widget">
+      <i class="fas fa-sun"></i>
+      <span>28°C - Ensoleillé</span>
+    </div>
+  </div>
+
+  <!-- Actions rapides -->
+  <div class="quick-actions">
+    <h2>Actions rapides</h2>
+    <div class="actions-grid">
+      <a class="action-card action-primary" routerLink="/structure-medicale/ajouter">
+        <div class="action-icon"><i class="fas fa-plus-square"></i></div>
+        <div class="action-content">
+          <h3>Ajouter une structure</h3>
+          <p>Créer un nouvel établissement</p>
+        </div>
+        <i class="fas fa-arrow-right action-arrow"></i>
+      </a>
+      <a class="action-card action-info" routerLink="/structure-medicale/liste">
+        <div class="action-icon"><i class="fas fa-hospital"></i></div>
+        <div class="action-content">
+          <h3>Liste des structures</h3>
+          <p>Voir tous les établissements</p>
+        </div>
+        <i class="fas fa-arrow-right action-arrow"></i>
+      </a>
+      <a class="action-card action-success" routerLink="/structure-medicale/statistiques">
+        <div class="action-icon"><i class="fas fa-chart-bar"></i></div>
+        <div class="action-content">
+          <h3>Statistiques</h3>
+          <p>Consulter les indicateurs clés</p>
+        </div>
+        <i class="fas fa-arrow-right action-arrow"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Contenu principal -->
+  <div class="dashboard-content">
+    <div class="left-column">
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-hospital"></i> Structures récentes</h3>
+          <a routerLink="/structure-medicale/liste" class="view-all">Voir tout</a>
+        </div>
+        <div class="card-body">
+          <div class="structure-list">
+            <!-- Exemple de structure, à remplacer par *ngFor -->
+            <div class="structure-item">
+              <div class="structure-name">Hôpital de Ziguinchor</div>
+              <div class="structure-type">Hôpital régional</div>
+              <span class="badge badge-success">Actif</span>
+            </div>
+            <div class="structure-item">
+              <div class="structure-name">Clinique Casamed</div>
+              <div class="structure-type">Clinique privée</div>
+              <span class="badge badge-primary">Actif</span>
+            </div>
+            <div class="structure-item">
+              <div class="structure-name">Centre de santé de Bignona</div>
+              <div class="structure-type">Centre de santé</div>
+              <span class="badge badge-secondary">Actif</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right-column">
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-chart-pie"></i> Statistiques clés</h3>
+        </div>
+        <div class="card-body">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-header">
+                <div>
+                  <div class="stat-value">24</div>
+                  <div class="stat-label">Structures actives</div>
+                </div>
+                <div class="stat-icon"><i class="fas fa-hospital"></i></div>
+              </div>
+              <div class="stat-trend trend-up">
+                <i class="fas fa-arrow-up"></i>
+                <span>+3 ce mois</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-header">
+                <div>
+                  <div class="stat-value">7</div>
+                  <div class="stat-label">Nouvelles demandes</div>
+                </div>
+                <div class="stat-icon"><i class="fas fa-envelope-open-text"></i></div>
+              </div>
+              <div class="stat-trend trend-up">
+                <i class="fas fa-arrow-up"></i>
+                <span>+2 ce mois</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-header">
+                <div>
+                  <div class="stat-value">5</div>
+                  <div class="stat-label">Structures en attente</div>
+                </div>
+                <div class="stat-icon"><i class="fas fa-clock"></i></div>
+              </div>
+              <div class="stat-trend trend-warning">
+                <i class="fas fa-arrow-right"></i>
+                <span>Stable</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
